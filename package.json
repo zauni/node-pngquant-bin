@@ -1,6 +1,6 @@
 {
   "name": "node-pngquant-bin",
-  "description": "pngqant Node.js wrapper that makes it seamlessly available on Windows, Mac OS X and Linux. Much like node-optipng-bin.",
+  "description": "pngquant Node.js wrapper that makes it seamlessly available on Windows and Mac OSX. Much like node-optipng-bin.",
   "version": "0.1.0",
   "homepage": "https://github.com/zauni/node-pngquant-bin",
   "author": {

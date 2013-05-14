@@ -1,36 +1,32 @@
 'use strict';
 
-var node_pngquant_bin = require('../lib/node-pngquant-bin.js');
+var path = require('path'),
+    fs = require('fs'),
+    pngquantPath = require('../lib/node-pngquant-bin.js'),
+    execFile = require('child_process').execFile,
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+    oldPath = path.join(__dirname, 'fixtures', 'pngquant-logo.png'),
+    newPath = path.join(__dirname, 'fixtures', 'pngquant-logo-fs8.png');
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
 
-exports['awesome'] = {
-  setUp: function(done) {
-    // setup here
-    done();
-  },
-  'no args': function(test) {
-    test.expect(1);
-    // tests here
-    test.equal(node_pngquant_bin.awesome(), 'awesome', 'should be awesome.');
-    test.done();
-  },
+exports.pngquantPath = {
+    pathtest: function(test) {
+        test.expect(1);
+        test.ok(pngquantPath.path != null, 'shouldn\'t be null on mac and windows.');
+        test.done();
+    },
+    exec: function(test) {
+        test.expect(1);
+
+        execFile(pngquantPath.path, ['256', '--', oldPath], function() {
+            var oldSize = fs.statSync(oldPath).size,
+                newSize = fs.statSync(newPath).size;
+
+            test.ok(newSize < oldSize, 'should be smaller.');
+
+            fs.unlinkSync(newPath);
+
+            test.done();
+        });
+    }
 };
