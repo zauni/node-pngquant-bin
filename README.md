@@ -14,7 +14,14 @@ var pngquantPath = require('node-pngquant-bin').path;
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+```javascript
+var pngquantPath = require('node-pngquant-bin').path,
+	execFile = require('child_process').execFile;
+
+execFile(pngquantPath, ['256', '--', 'imagefile.png'], function() {
+	// image is optimized and renamed to imagefile-fs8.png
+});
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
