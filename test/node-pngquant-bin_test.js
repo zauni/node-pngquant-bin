@@ -2,7 +2,7 @@
 
 var path = require('path'),
     fs = require('fs'),
-    pngquantPath = require('../lib/node-pngquant-bin.js'),
+    pngquantPath = require('../lib/node-pngquant-bin.js').path,
     execFile = require('child_process').execFile,
 
     oldPath = path.join(__dirname, 'fixtures', 'pngquant-logo.png'),
@@ -12,13 +12,13 @@ var path = require('path'),
 exports.pngquantPath = {
     pathtest: function(test) {
         test.expect(1);
-        test.ok(pngquantPath.path != null, 'shouldn\'t be null on mac and windows.');
+        test.ok(pngquantPath != null, 'shouldn\'t be null on mac and windows.');
         test.done();
     },
     exec: function(test) {
         test.expect(1);
 
-        execFile(pngquantPath.path, ['256', '--', oldPath], function() {
+        execFile(pngquantPath, ['256', '--', oldPath], function() {
             var oldSize = fs.statSync(oldPath).size,
                 newSize = fs.statSync(newPath).size;
 
