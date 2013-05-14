@@ -1,4 +1,4 @@
-# node-pngquant-bin [![Build Status](https://secure.travis-ci.org/zauni/node-pngquant-bin.png?branch=master)](http://travis-ci.org/zauni/node-pngquant-bin)
+# node-pngquant-bin
 
 pngquant Node.js wrapper that makes it seamlessly available on Windows and Mac OS X.
 Most of the ideas are taken from [node-optipng-bin](https://github.com/yeoman/node-optipng-bin) module.
